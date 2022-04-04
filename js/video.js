@@ -22,13 +22,15 @@ document.querySelector("#slower").addEventListener("click", function(){
 });
 
 document.querySelector("#faster").addEventListener("click", function() {
-	video.playbackRate *= 1.05;
+	video.playbackRate /= .95;
 	console.log(video.playbackRate);
 });
 
 document.querySelector("#skip").addEventListener("click", function() {
-	if (video.duration > 15){
-		video.currentTime += 15;
+	video.currentTime += 15;
+
+	if (video.currentTime >= video.duration){
+		video.currentTime = 0;
 	}
 	console.log(video.currentTime);
 });
@@ -36,6 +38,11 @@ document.querySelector("#skip").addEventListener("click", function() {
 document.querySelector("#mute").addEventListener("click", function() {
 	video.muted = !video.muted;
 	// console.log(video.muted);
+	if (video.muted){
+		document.querySelector("#mute").innerHTML = "Mute"
+	} else {
+		document.querySelector("#mute").innerHTML = "Unmute"
+	}
 });
 
 document.querySelector("#slider").addEventListener("change", function(){
